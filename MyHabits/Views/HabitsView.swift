@@ -13,6 +13,7 @@ class HabitsView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "habitCell")
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -41,4 +42,11 @@ class HabitsView: UIView {
             habitsCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+
+extension HabitsView: DelegateInController {
+    func delegateInController() -> UICollectionView {
+        habitsCollectionView
+    }
+    
 }
