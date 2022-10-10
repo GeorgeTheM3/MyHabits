@@ -13,6 +13,7 @@
 		5EE2E70028F4188500D45439 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E6FF28F4188500D45439 /* LaunchScreenViewController.swift */; };
 		5EE2E70228F41A3E00D45439 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70128F41A3E00D45439 /* Constants.swift */; };
 		5EE2E70428F41A7100D45439 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70328F41A7100D45439 /* HabitStore.swift */; };
+		5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70728F4937500D45439 /* HabitsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5EE2E6FF28F4188500D45439 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		5EE2E70128F41A3E00D45439 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5EE2E70328F41A7100D45439 /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
+		5EE2E70728F4937500D45439 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		5EE2E6FC28F4163600D45439 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5EE2E70728F4937500D45439 /* HabitsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E32048E28F40BF5002A9B01 /* AppDelegate.swift in Sources */,
+				5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */,
 				5E32049028F40BF5002A9B01 /* SceneDelegate.swift in Sources */,
 				5EE2E70428F41A7100D45439 /* HabitStore.swift in Sources */,
 				5EE2E70028F4188500D45439 /* LaunchScreenViewController.swift in Sources */,
