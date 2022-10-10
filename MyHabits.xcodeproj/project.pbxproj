@@ -16,6 +16,9 @@
 		5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70728F4937500D45439 /* HabitsView.swift */; };
 		5EE2E70A28F49E3300D45439 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70928F49E3300D45439 /* HabitsViewController.swift */; };
 		5EE2E70D28F4A14B00D45439 /* DelegateInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70C28F4A14B00D45439 /* DelegateInController.swift */; };
+		5EE2E70F28F4A6CF00D45439 /* HabitCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */; };
+		5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71028F4A75000D45439 /* TabBarViewController.swift */; };
+		5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71228F4A91000D45439 /* InformationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		5EE2E70728F4937500D45439 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
 		5EE2E70928F49E3300D45439 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		5EE2E70C28F4A14B00D45439 /* DelegateInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateInController.swift; sourceTree = "<group>"; };
+		5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCustomCell.swift; sourceTree = "<group>"; };
+		5EE2E71028F4A75000D45439 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		5EE2E71228F4A91000D45439 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,8 @@
 			children = (
 				5EE2E70928F49E3300D45439 /* HabitsViewController.swift */,
 				5EE2E6FF28F4188500D45439 /* LaunchScreenViewController.swift */,
+				5EE2E71228F4A91000D45439 /* InformationViewController.swift */,
+				5EE2E71028F4A75000D45439 /* TabBarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -87,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				5EE2E70728F4937500D45439 /* HabitsView.swift */,
+				5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,7 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E32048E28F40BF5002A9B01 /* AppDelegate.swift in Sources */,
+				5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */,
+				5EE2E70F28F4A6CF00D45439 /* HabitCustomCell.swift in Sources */,
 				5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */,
+				5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */,
 				5EE2E70A28F49E3300D45439 /* HabitsViewController.swift in Sources */,
 				5EE2E70D28F4A14B00D45439 /* DelegateInController.swift in Sources */,
 				5E32049028F40BF5002A9B01 /* SceneDelegate.swift in Sources */,
