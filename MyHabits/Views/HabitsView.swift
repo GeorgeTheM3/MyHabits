@@ -13,7 +13,7 @@ class HabitsView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "habitCell")
+        collectionView.register(HabitCustomCell.self, forCellWithReuseIdentifier: "habitCell")
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView

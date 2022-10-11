@@ -11,6 +11,9 @@ class HabitsViewController: UIViewController {
     
     private var delegetaInController: DelegateInController?
     
+    let insetsSize: CGFloat = 20
+    let numberOfItems: CGFloat = 1
+    
     override func loadView() {
         super.loadView()
         self.view = getView()
@@ -39,18 +42,37 @@ class HabitsViewController: UIViewController {
 
 extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath)
-        cell.backgroundColor = .red
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
+            cell.backgroundColor = .systemGray5
+            return cell
+        }
+        return UICollectionViewCell()
     }
 }
 
-extension HabitsViewController: UICollectionViewDelegate {
+extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("item selected")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let collectionViewWidth = delegetaInController?.delegateInController().frame.width {
+            let spaces = CGFloat((numberOfItems + 1) * insetsSize)
+            let cellWidth = (collectionViewWidth - spaces)/numberOfItems
+            return CGSize(width: cellWidth, height: 120)
+        }
+        return CGSize()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return insetsSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return insetsSize
     }
 }
