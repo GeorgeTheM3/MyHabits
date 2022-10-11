@@ -57,22 +57,31 @@ class HabitCustomCell: UICollectionViewCell {
     
     private func setSubviewsConstraints() {
         NSLayoutConstraint.activate([
-            habitTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            habitTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            habitTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            habitTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             habitTitleLabel.trailingAnchor.constraint(equalTo: habitIndicatorImageView.leadingAnchor, constant: -20),
             
             habitTimeLabel.topAnchor.constraint(equalTo: habitTitleLabel.bottomAnchor, constant: 5),
             habitTimeLabel.leadingAnchor.constraint(equalTo: habitTitleLabel.leadingAnchor),
             habitTimeLabel.trailingAnchor.constraint(equalTo: habitTitleLabel.trailingAnchor),
             
-            habitCounterLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            habitCounterLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
             habitCounterLabel.leadingAnchor.constraint(equalTo: habitTitleLabel.leadingAnchor),
             habitCounterLabel.trailingAnchor.constraint(equalTo: habitTitleLabel.trailingAnchor),
             
             habitIndicatorImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             habitIndicatorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            habitIndicatorImageView.widthAnchor.constraint(equalToConstant: 50),
-            habitIndicatorImageView.heightAnchor.constraint(equalToConstant: 50)
+            habitIndicatorImageView.widthAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
+            habitIndicatorImageView.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
         ])
+    }
+}
+
+extension HabitCustomCell: DelegateOutController {
+    func delegateOut<T>(info: T?) -> T? {
+        if let bool = info as? Bool {
+            habitIndicatorImageView.image = bool ? UIImage(systemName: "") : UIImage(systemName: "circle")
+        }
+        return nil
     }
 }

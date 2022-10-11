@@ -19,6 +19,8 @@
 		5EE2E70F28F4A6CF00D45439 /* HabitCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */; };
 		5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71028F4A75000D45439 /* TabBarViewController.swift */; };
 		5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71228F4A91000D45439 /* InformationViewController.swift */; };
+		5EE2E71728F598F300D45439 /* ProgressCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71628F598F300D45439 /* ProgressCustomCell.swift */; };
+		5EE2E71A28F5A46500D45439 /* DelegateOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71928F5A46500D45439 /* DelegateOutController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCustomCell.swift; sourceTree = "<group>"; };
 		5EE2E71028F4A75000D45439 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5EE2E71228F4A91000D45439 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		5EE2E71628F598F300D45439 /* ProgressCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustomCell.swift; sourceTree = "<group>"; };
+		5EE2E71928F5A46500D45439 /* DelegateOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateOutController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				5EE2E70928F49E3300D45439 /* HabitsViewController.swift */,
-				5EE2E6FF28F4188500D45439 /* LaunchScreenViewController.swift */,
 				5EE2E71228F4A91000D45439 /* InformationViewController.swift */,
-				5EE2E71028F4A75000D45439 /* TabBarViewController.swift */,
+				5EE2E71428F5985E00D45439 /* Other */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -94,8 +97,7 @@
 		5EE2E6FC28F4163600D45439 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5EE2E70728F4937500D45439 /* HabitsView.swift */,
-				5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */,
+				5EE2E71528F5989D00D45439 /* Habits View */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,8 +123,36 @@
 			isa = PBXGroup;
 			children = (
 				5EE2E70C28F4A14B00D45439 /* DelegateInController.swift */,
+				5EE2E71928F5A46500D45439 /* DelegateOutController.swift */,
 			);
 			path = "Delegate Protocols";
+			sourceTree = "<group>";
+		};
+		5EE2E71428F5985E00D45439 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				5EE2E71028F4A75000D45439 /* TabBarViewController.swift */,
+				5EE2E6FF28F4188500D45439 /* LaunchScreenViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		5EE2E71528F5989D00D45439 /* Habits View */ = {
+			isa = PBXGroup;
+			children = (
+				5EE2E70728F4937500D45439 /* HabitsView.swift */,
+				5EE2E71828F5990100D45439 /* Custom Cells */,
+			);
+			path = "Habits View";
+			sourceTree = "<group>";
+		};
+		5EE2E71828F5990100D45439 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5EE2E70E28F4A6CF00D45439 /* HabitCustomCell.swift */,
+				5EE2E71628F598F300D45439 /* ProgressCustomCell.swift */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,10 +227,12 @@
 				5E32048E28F40BF5002A9B01 /* AppDelegate.swift in Sources */,
 				5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */,
 				5EE2E70F28F4A6CF00D45439 /* HabitCustomCell.swift in Sources */,
+				5EE2E71728F598F300D45439 /* ProgressCustomCell.swift in Sources */,
 				5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */,
 				5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */,
 				5EE2E70A28F49E3300D45439 /* HabitsViewController.swift in Sources */,
 				5EE2E70D28F4A14B00D45439 /* DelegateInController.swift in Sources */,
+				5EE2E71A28F5A46500D45439 /* DelegateOutController.swift in Sources */,
 				5E32049028F40BF5002A9B01 /* SceneDelegate.swift in Sources */,
 				5EE2E70428F41A7100D45439 /* HabitStore.swift in Sources */,
 				5EE2E70028F4188500D45439 /* LaunchScreenViewController.swift in Sources */,

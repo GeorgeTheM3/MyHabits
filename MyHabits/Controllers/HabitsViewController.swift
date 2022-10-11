@@ -10,15 +10,16 @@ import UIKit
 class HabitsViewController: UIViewController {
     
     private var delegetaInController: DelegateInController?
+    private var delegateOutController: DelegateOutController?
     
-    let insetsSize: CGFloat = 20
+    let insetsSize: CGFloat = 15
     let numberOfItems: CGFloat = 1
     
     override func loadView() {
         super.loadView()
         self.view = getView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupsCollectionView()
@@ -41,14 +42,34 @@ class HabitsViewController: UIViewController {
 }
 
 extension HabitsViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        if section == 0 {
+            return 1
+        } else {
+           return 10
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
-            cell.backgroundColor = .systemGray5
-            return cell
+        if indexPath.section == 0 {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "progressCell", for: indexPath) as? ProgressCustomCell {
+                cell.backgroundColor = .white
+                cell.clipsToBounds = true
+                cell.layer.cornerRadius = 10
+                return cell
+            }
+        } else {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
+                delegateOutController = cell
+                cell.backgroundColor = .white
+                cell.clipsToBounds = true
+                cell.layer.cornerRadius = 10
+                return cell
+            }
         }
         return UICollectionViewCell()
     }
@@ -56,16 +77,25 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("item selected")
+        print("item selected \(indexPath.row)")
+        _ = delegateOutController?.delegateOut(info: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let collectionViewWidth = delegetaInController?.delegateInController().frame.width {
-            let spaces = CGFloat((numberOfItems + 1) * insetsSize)
-            let cellWidth = (collectionViewWidth - spaces)/numberOfItems
-            return CGSize(width: cellWidth, height: 120)
+        let collectionViewWidth = collectionView.frame.width
+        let spaces = CGFloat((numberOfItems + 1) * insetsSize)
+        let cellWidth = (collectionViewWidth - spaces)/numberOfItems
+        if indexPath.section == 0 {
+            let cellHeith = cellWidth / 6
+            return CGSize(width: cellWidth, height: cellHeith)
+        } else {
+            let cellHeith = cellWidth / 2.5
+            return CGSize(width: cellWidth, height: cellHeith)
         }
-        return CGSize()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: insetsSize, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

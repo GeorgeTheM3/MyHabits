@@ -14,7 +14,8 @@ class HabitsView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(HabitCustomCell.self, forCellWithReuseIdentifier: "habitCell")
-        collectionView.backgroundColor = .white
+        collectionView.register(ProgressCustomCell.self, forCellWithReuseIdentifier: "progressCell")
+        collectionView.backgroundColor = .systemGray6
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
