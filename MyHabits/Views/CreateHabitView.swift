@@ -12,8 +12,8 @@ class CreateHabitView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Название"
-        label.backgroundColor = .red
+        label.text = "НАЗВАНИЕ"
+        label.font = Constants.shared.footnoteFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -21,15 +21,15 @@ class CreateHabitView: UIView {
     private lazy var enterTitleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Бегать по утрам, спать по 8 часов и т.п."
-        textField.backgroundColor = .red
+        textField.font = Constants.shared.footnoteStatusFont
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private lazy var colorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Цвет"
-        label.backgroundColor = .red
+        label.text = "ЦВЕТ"
+        label.font = Constants.shared.footnoteFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -39,15 +39,14 @@ class CreateHabitView: UIView {
         colorWell.supportsAlpha = true
         colorWell.selectedColor = .blue
         colorWell.title = "Color well"
-        colorWell.backgroundColor = .blue
         colorWell.translatesAutoresizingMaskIntoConstraints = false
         return colorWell
     }()
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Время"
-        label.backgroundColor = .red
+        label.text = "ВРЕМЯ"
+        label.font = Constants.shared.footnoteFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,9 +54,16 @@ class CreateHabitView: UIView {
     private lazy var choosenTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "Каждый день в ...."
-        label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .time
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
     }()
     
     override init(frame: CGRect) {
@@ -79,6 +85,7 @@ class CreateHabitView: UIView {
         addSubview(colorPicker)
         addSubview(timeLabel)
         addSubview(choosenTimeLabel)
+        addSubview(datePicker)
     }
     
     private func setSubviewsCostreints() {
@@ -87,22 +94,27 @@ class CreateHabitView: UIView {
             titleLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -Constants.shared.paddingLeftAndRigh),
             titleLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             
-            enterTitleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            enterTitleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.shared.paddingBetween),
             enterTitleTextField.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
             colorLabel.topAnchor.constraint(equalTo: enterTitleTextField.bottomAnchor, constant: Constants.shared.paddingTop),
             colorLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -Constants.shared.paddingLeftAndRigh),
             colorLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
             
-            colorPicker.topAnchor.constraint(equalTo: colorLabel.bottomAnchor),
+            colorPicker.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: Constants.shared.paddingBetween),
             colorPicker.leadingAnchor.constraint(equalTo: colorLabel.leadingAnchor),
             
             timeLabel.topAnchor.constraint(equalTo: colorPicker.bottomAnchor, constant: Constants.shared.paddingTop),
             timeLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -Constants.shared.paddingLeftAndRigh),
             timeLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
             
-            choosenTimeLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor),
+            choosenTimeLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: Constants.shared.paddingBetween),
             choosenTimeLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            
+            datePicker.topAnchor.constraint(equalTo: choosenTimeLabel.bottomAnchor, constant: Constants.shared.paddingTop),
+            datePicker.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            datePicker.heightAnchor.constraint(equalToConstant: Constants.shared.datePickerHeigh)
+            
         ])
     }
 }

@@ -51,7 +51,7 @@ extension HabitsView: DelegateInController {
     }
 }
 
-//extension HabitsView: DelegateInController2 {
+//extension HabitsView: DelegateInControllerGeneric {
 //    func delegateInController<T>(info: T?) -> T? {
 //        habitsCollectionView as? T
 //    }

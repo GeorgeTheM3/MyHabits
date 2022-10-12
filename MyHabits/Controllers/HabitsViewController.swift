@@ -43,10 +43,9 @@ class HabitsViewController: UIViewController {
     }
     
     @objc private func presentCreateHabitVC() {
-        let createHabitVC = CreateHabitViewController()
-        createHabitVC.modalPresentationStyle = .fullScreen
-//        present(createHabitVC, animated: true)
-        navigationController?.pushViewController(createHabitVC, animated: true)
+        let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
 }
 
@@ -86,8 +85,8 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("item selected \(indexPath.row)")
-        _ = delegateOutController?.delegateOut(info: true)
+        let controller = HabitDetailViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -115,3 +114,6 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         return insetsSize
     }
 }
+
+
+let a = Habit(name: "ff", date: .now , color: .blue)

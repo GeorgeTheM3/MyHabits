@@ -17,8 +17,20 @@ class CreateHabitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupHabitsViewController()
     }
+    
+    private func setupHabitsViewController() {
+        view.backgroundColor = .white
+        navigationItem.title = "Создать"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(dismissCreateHabitVC))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismissCreateHabitVC))
+    }
+    
+    @objc private func dismissCreateHabitVC() {
+        dismiss(animated: true)
+    }
+    
     
     private func getView() -> UIView {
         let view = CreateHabitView()
