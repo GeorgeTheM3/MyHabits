@@ -23,6 +23,7 @@ class HabitsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupsCollectionView()
+        setupHabitsViewController()
     }
     
     private func getView() -> UIView {
@@ -38,6 +39,14 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupHabitsViewController() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(presentCreateHabitVC))
+    }
+    
+    @objc private func presentCreateHabitVC() {
+        let createHabitVC = CreateHabitViewController()
+        createHabitVC.modalPresentationStyle = .fullScreen
+//        present(createHabitVC, animated: true)
+        navigationController?.pushViewController(createHabitVC, animated: true)
     }
 }
 

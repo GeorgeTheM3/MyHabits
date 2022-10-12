@@ -21,6 +21,8 @@
 		5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71228F4A91000D45439 /* InformationViewController.swift */; };
 		5EE2E71728F598F300D45439 /* ProgressCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71628F598F300D45439 /* ProgressCustomCell.swift */; };
 		5EE2E71A28F5A46500D45439 /* DelegateOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71928F5A46500D45439 /* DelegateOutController.swift */; };
+		5EE2E71C28F5A96400D45439 /* CreateHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71B28F5A96400D45439 /* CreateHabitView.swift */; };
+		5EE2E71E28F66ABC00D45439 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E71D28F66ABC00D45439 /* CreateHabitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		5EE2E71228F4A91000D45439 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		5EE2E71628F598F300D45439 /* ProgressCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustomCell.swift; sourceTree = "<group>"; };
 		5EE2E71928F5A46500D45439 /* DelegateOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateOutController.swift; sourceTree = "<group>"; };
+		5EE2E71B28F5A96400D45439 /* CreateHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitView.swift; sourceTree = "<group>"; };
+		5EE2E71D28F66ABC00D45439 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				5EE2E6FE28F4164B00D45439 /* Helper */,
 				5EE2E6FD28F4163E00D45439 /* Model */,
 				5EE2E6FC28F4163600D45439 /* Views */,
+				5EE2E71B28F5A96400D45439 /* CreateHabitView.swift */,
 				5EE2E6FB28F4162700D45439 /* Controllers */,
 				5E32049628F40BF6002A9B01 /* Assets.xcassets */,
 				5E32049B28F40BF6002A9B01 /* Info.plist */,
@@ -88,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				5EE2E70928F49E3300D45439 /* HabitsViewController.swift */,
+				5EE2E71D28F66ABC00D45439 /* CreateHabitViewController.swift */,
 				5EE2E71228F4A91000D45439 /* InformationViewController.swift */,
 				5EE2E71428F5985E00D45439 /* Other */,
 			);
@@ -105,7 +111,6 @@
 		5EE2E6FD28F4163E00D45439 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5EE2E70128F41A3E00D45439 /* Constants.swift */,
 				5EE2E70328F41A7100D45439 /* HabitStore.swift */,
 				5EE2E70B28F4A11000D45439 /* Delegate Protocols */,
 			);
@@ -115,6 +120,7 @@
 		5EE2E6FE28F4164B00D45439 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5EE2E70128F41A3E00D45439 /* Constants.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -227,10 +233,12 @@
 				5E32048E28F40BF5002A9B01 /* AppDelegate.swift in Sources */,
 				5EE2E71328F4A91000D45439 /* InformationViewController.swift in Sources */,
 				5EE2E70F28F4A6CF00D45439 /* HabitCustomCell.swift in Sources */,
+				5EE2E71E28F66ABC00D45439 /* CreateHabitViewController.swift in Sources */,
 				5EE2E71728F598F300D45439 /* ProgressCustomCell.swift in Sources */,
 				5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */,
 				5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */,
 				5EE2E70A28F49E3300D45439 /* HabitsViewController.swift in Sources */,
+				5EE2E71C28F5A96400D45439 /* CreateHabitView.swift in Sources */,
 				5EE2E70D28F4A14B00D45439 /* DelegateInController.swift in Sources */,
 				5EE2E71A28F5A46500D45439 /* DelegateOutController.swift in Sources */,
 				5E32049028F40BF5002A9B01 /* SceneDelegate.swift in Sources */,

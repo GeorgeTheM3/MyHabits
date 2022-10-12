@@ -49,5 +49,10 @@ extension HabitsView: DelegateInController {
     func delegateInController() -> UICollectionView {
         habitsCollectionView
     }
-    
 }
+
+//extension HabitsView: DelegateInController2 {
+//    func delegateInController<T>(info: T?) -> T? {
+//        habitsCollectionView as? T
+//    }
+//}

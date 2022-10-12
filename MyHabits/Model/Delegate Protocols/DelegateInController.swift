@@ -11,3 +11,7 @@ import UIKit
 protocol DelegateInController: AnyObject {
     func delegateInController() -> UICollectionView
 }
+
+protocol DelegateInControllerGeneric: AnyObject {
+    func delegateInController<T>(info: T?) -> T?
+}
