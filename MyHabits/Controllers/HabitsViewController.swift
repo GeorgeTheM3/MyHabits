@@ -24,9 +24,12 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         setupsCollectionView()
         setupHabitsViewController()
+//        HabitsStore.shared.habits.removeAll()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let collectionView = delegetaInController?.delegateInController(info: UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
+        collectionView?.reloadData()
     }
     
     private func getView() -> UIView {
@@ -56,14 +59,14 @@ class HabitsViewController: UIViewController {
 
 extension HabitsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
+        2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0 && HabitsStore.shared.habits.count != 0 {
             return 1
         } else {
-           return 10
+            return HabitsStore.shared.habits.count
         }
     }
     
@@ -78,9 +81,15 @@ extension HabitsViewController: UICollectionViewDataSource {
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
                 delegateOutController = cell
+                let curentHabit = HabitsStore.shared.habits[indexPath.item]
                 cell.backgroundColor = .white
                 cell.clipsToBounds = true
                 cell.layer.cornerRadius = 10
+                cell.habitTitleLabel.text = curentHabit.name
+                cell.habitTitleLabel.textColor = curentHabit.color
+                cell.habitTimeLabel.text = curentHabit.dateString
+                cell.habitIndicatorImageView.tintColor = curentHabit.color
+                cell.habitCounterLabel.text = "Счетчик: \(curentHabit.trackDates.count)"
                 return cell
             }
         }
