@@ -10,7 +10,7 @@ import UIKit
 
 class HabitDetailViewController: UIViewController {
     
-    private weak var delegateInController: DelegateInControllerGeneric?
+    private weak var delegateInController: InputProtocol?
     
     override func loadView() {
         super.loadView()

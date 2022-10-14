@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class HabitCustomCell: UICollectionViewCell {
-    private lazy var habitTitleLabel: UILabel = {
+    private(set) lazy var habitTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTitleLabel"
         label.numberOfLines = 2
@@ -17,21 +17,21 @@ class HabitCustomCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var habitTimeLabel: UILabel = {
+    private(set) lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTimeLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var habitCounterLabel: UILabel = {
+    private(set) lazy var habitCounterLabel: UILabel = {
         let label = UILabel()
         label.text = "habitCounterLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var habitIndicatorImageView: UIImageView = {
+    private(set) lazy var habitIndicatorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +77,7 @@ class HabitCustomCell: UICollectionViewCell {
     }
 }
 
-extension HabitCustomCell: DelegateOutController {
+extension HabitCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
         if let bool = info as? Bool {
             habitIndicatorImageView.image = bool ? UIImage(systemName: "") : UIImage(systemName: "circle")

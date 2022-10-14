@@ -10,6 +10,8 @@ import UIKit
 
 class CreateHabitViewController: UIViewController {
     
+    private var delegateOutView: OutputProtocol?
+    
     override func loadView() {
         super.loadView()
         self.view = getView()
@@ -23,7 +25,7 @@ class CreateHabitViewController: UIViewController {
     private func setupHabitsViewController() {
         view.backgroundColor = .white
         navigationItem.title = "Создать"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(dismissCreateHabitVC))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveCreateHabitVC))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismissCreateHabitVC))
     }
     
@@ -31,9 +33,15 @@ class CreateHabitViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @objc private func saveCreateHabitVC() {
+        if let habit = delegateOutView?.delegateOut(info: Habit(name: "", date: .now, color: .black)) {
+            HabitsStore.shared.habits.append(habit)
+        }
+    }
     
     private func getView() -> UIView {
         let view = CreateHabitView()
+        delegateOutView = view
         return view
     }
 }

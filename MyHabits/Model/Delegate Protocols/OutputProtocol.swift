@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DelegateOutController {
+protocol OutputProtocol: AnyObject {
     func delegateOut<T>(info: T?) -> T?
 }

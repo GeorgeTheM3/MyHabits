@@ -23,4 +23,7 @@ class Constants {
     let bodyFont = UIFont.preferredFont(forTextStyle: .body).withSize(17)
     let footnoteFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(13)
     let footnoteStatusFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(13)
+    
+    //Цвета
+    let navigationBarTintColor:UIColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1)
 }

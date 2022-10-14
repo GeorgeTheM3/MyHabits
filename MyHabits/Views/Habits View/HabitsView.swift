@@ -45,14 +45,8 @@ class HabitsView: UIView {
     }
 }
 
-extension HabitsView: DelegateInController {
-    func delegateInController() -> UICollectionView {
-        habitsCollectionView
+extension HabitsView: InputProtocol {
+    func delegateInController<T>(info: T?) -> T? {
+        habitsCollectionView as? T
     }
 }
-
-//extension HabitsView: DelegateInControllerGeneric {
-//    func delegateInController<T>(info: T?) -> T? {
-//        habitsCollectionView as? T
-//    }
-//}

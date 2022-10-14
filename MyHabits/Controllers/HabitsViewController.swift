@@ -9,8 +9,8 @@ import UIKit
 
 class HabitsViewController: UIViewController {
     
-    private var delegetaInController: DelegateInController?
-    private var delegateOutController: DelegateOutController?
+    private var delegetaInController: InputProtocol?
+    private var delegateOutController: OutputProtocol?
     
     let insetsSize: CGFloat = 15
     let numberOfItems: CGFloat = 1
@@ -26,6 +26,9 @@ class HabitsViewController: UIViewController {
         setupHabitsViewController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     private func getView() -> UIView {
         let view = HabitsView()
         delegetaInController = view
@@ -33,7 +36,8 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupsCollectionView() {
-        let collectionView = delegetaInController?.delegateInController()
+        navigationController?.navigationBar.tintColor = Constants.shared.navigationBarTintColor
+        let collectionView = delegetaInController?.delegateInController(info: UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
         collectionView?.delegate = self
         collectionView?.dataSource = self
     }
@@ -44,6 +48,7 @@ class HabitsViewController: UIViewController {
     
     @objc private func presentCreateHabitVC() {
         let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
+        navigationController.navigationBar.tintColor = Constants.shared.navigationBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }
@@ -51,7 +56,7 @@ class HabitsViewController: UIViewController {
 
 extension HabitsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,8 +90,10 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
         navigationController?.pushViewController(controller, animated: true)
+        print(HabitsStore.shared.habits.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

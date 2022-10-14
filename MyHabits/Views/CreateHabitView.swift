@@ -118,3 +118,12 @@ class CreateHabitView: UIView {
         ])
     }
 }
+
+extension CreateHabitView: OutputProtocol {
+    func delegateOut<T>(info: T?) -> T? {
+        if let title = enterTitleTextField.text, let color = colorPicker.selectedColor {
+            return Habit(name: title, date: datePicker.date, color: color ) as? T
+        }
+        return nil
+    }
+}

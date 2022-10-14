@@ -6,12 +6,7 @@
 //
 
 import Foundation
-import UIKit
 
-protocol DelegateInController: AnyObject {
-    func delegateInController() -> UICollectionView
-}
-
-protocol DelegateInControllerGeneric: AnyObject {
+protocol InputProtocol: AnyObject {
     func delegateInController<T>(info: T?) -> T?
 }

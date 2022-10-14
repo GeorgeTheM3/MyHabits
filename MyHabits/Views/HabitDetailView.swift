@@ -36,7 +36,7 @@ class HabitDetailView: UIView {
     }
 }
 
-extension HabitDetailView: DelegateInControllerGeneric {
+extension HabitDetailView: InputProtocol {
     func delegateInController<T>(info: T?) -> T? {
         activityTableView as? T
     }
