@@ -16,8 +16,9 @@ class TabBarViewController: UITabBarController {
     }
     
     func configureTabBar(){
-        view.backgroundColor = .systemGray4
-        self.tabBar.tintColor = .red
+        view.backgroundColor = .systemGray5
+        self.tabBar.tintColor = Constants.shared.navBarTintColor
+        self.tabBar.backgroundColor = .systemGray5
         
         var controllers: [UIViewController] = []
         

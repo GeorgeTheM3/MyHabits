@@ -39,19 +39,21 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupsCollectionView() {
-        navigationController?.navigationBar.tintColor = Constants.shared.navigationBarTintColor
+        navigationController?.navigationBar.tintColor = Constants.shared.navBarTintColor
         let collectionView = delegetaInController?.delegateInController(info: UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
         collectionView?.delegate = self
         collectionView?.dataSource = self
     }
     
     private func setupHabitsViewController() {
+        navigationItem.title = "Сегодня"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(presentCreateHabitVC))
     }
     
     @objc private func presentCreateHabitVC() {
         let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
-        navigationController.navigationBar.tintColor = Constants.shared.navigationBarTintColor
+        navigationController.navigationBar.tintColor = Constants.shared.navBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }
@@ -85,11 +87,17 @@ extension HabitsViewController: UICollectionViewDataSource {
                 cell.backgroundColor = .white
                 cell.clipsToBounds = true
                 cell.layer.cornerRadius = 10
+                
                 cell.habitTitleLabel.text = curentHabit.name
                 cell.habitTitleLabel.textColor = curentHabit.color
+                
                 cell.habitTimeLabel.text = curentHabit.dateString
+                cell.habitTimeLabel.textColor = .systemGray3
+                
                 cell.habitIndicatorImageView.tintColor = curentHabit.color
+                
                 cell.habitCounterLabel.text = "Счетчик: \(curentHabit.trackDates.count)"
+                cell.habitCounterLabel.textColor = .systemGray2
                 return cell
             }
         }
@@ -130,6 +138,3 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         return insetsSize
     }
 }
-
-
-let a = Habit(name: "ff", date: .now , color: .blue)

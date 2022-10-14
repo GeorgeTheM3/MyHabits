@@ -15,7 +15,7 @@ class HabitsView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(HabitCustomCell.self, forCellWithReuseIdentifier: "habitCell")
         collectionView.register(ProgressCustomCell.self, forCellWithReuseIdentifier: "progressCell")
-        collectionView.backgroundColor = .systemGray6
+        collectionView.backgroundColor = Constants.shared.customWhite
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()

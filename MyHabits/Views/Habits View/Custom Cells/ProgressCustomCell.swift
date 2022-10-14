@@ -25,6 +25,8 @@ class ProgressCustomCell: UICollectionViewCell {
     
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
+        progressView.tintColor = Constants.shared.navBarTintColor
+        progressView.progress = 0.5
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()

@@ -13,6 +13,7 @@ class HabitCustomCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "habitTitleLabel"
         label.numberOfLines = 2
+        label.font = Constants.shared.headlineFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -25,5 +25,16 @@ class Constants {
     let footnoteStatusFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(13)
     
     //Цвета
-    let navigationBarTintColor:UIColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1)
+    let navBarTintColor:UIColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1)
+    let customBlue: UIColor = UIColor(red: 41/255, green: 109/255, blue: 255/255, alpha: 1)
+    let customGreen:UIColor = UIColor(red: 41/255, green: 109/255, blue: 255/255, alpha: 1)
+    let customPurple: UIColor = UIColor(red: 98/255, green: 54/255, blue: 255/255, alpha: 1)
+    let customOrange: UIColor = UIColor(red: 255/255, green: 159/255, blue: 79/255, alpha: 1)
+    let customWhite: UIColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
+    
+    //Ключи
+    enum Key {
+        case create
+        case rework
+    }
 }

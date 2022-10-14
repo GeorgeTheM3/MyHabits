@@ -27,11 +27,14 @@ class HabitDetailViewController: UIViewController {
         a?.dataSource = self
         view.backgroundColor = .white
         navigationItem.title = "Название привычки"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(dismissCreateHabitVC))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(createHabitVC))
     }
     
-    @objc private func dismissCreateHabitVC() {
-        dismiss(animated: true)
+    @objc private func createHabitVC() {
+        let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
+        navigationController.navigationBar.tintColor = Constants.shared.navBarTintColor
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
     
     
