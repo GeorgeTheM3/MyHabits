@@ -11,6 +11,7 @@ import UIKit
 class CreateHabitViewController: UIViewController {
     
     private var delegateOutView: OutputProtocol?
+    private var delegateInView: InputProtocol?
     
     private var status: Bool
     
@@ -31,6 +32,7 @@ class CreateHabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHabitsViewController()
+        delegateInView?.delegateInController(info: status)
     }
     
     private func setupHabitsViewController() {
@@ -54,6 +56,7 @@ class CreateHabitViewController: UIViewController {
     private func getView() -> UIView {
         let view = CreateHabitView()
         delegateOutView = view
+        delegateInView = view
         return view
     }
 }

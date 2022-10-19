@@ -139,3 +139,15 @@ extension CreateHabitView: OutputProtocol {
         return nil
     }
 }
+
+extension CreateHabitView: InputProtocol {
+    func delegateInController<T>(info: T?) -> T? {
+        guard let flag = info as? Bool else { return nil}
+        if flag {
+            print(flag)
+        } else {
+            print(flag)
+        }
+        return nil
+    }
+}
