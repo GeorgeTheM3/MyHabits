@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class Constants {
-//    static let shared = Constants()
     
     // Настройки create habit view
     static let paddingTop = CGFloat(20)
@@ -31,10 +30,4 @@ class Constants {
     static let customPurple: UIColor = UIColor(red: 98/255, green: 54/255, blue: 255/255, alpha: 1)
     static let customOrange: UIColor = UIColor(red: 255/255, green: 159/255, blue: 79/255, alpha: 1)
     static let customWhite: UIColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
-    
-    //Ключи
-    enum Key {
-        case create
-        case rework
-    }
 }

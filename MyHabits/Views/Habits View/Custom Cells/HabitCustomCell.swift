@@ -39,6 +39,13 @@ class HabitCustomCell: UICollectionViewCell {
         return imageView
     }()
     
+    private lazy var habitIndicatorButton: UIButton = { // delete
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 10
@@ -57,6 +64,7 @@ class HabitCustomCell: UICollectionViewCell {
         addSubview(habitTimeLabel)
         addSubview(habitCounterLabel)
         addSubview(habitIndicatorImageView)
+        addSubview(habitIndicatorButton)
     }
     
     private func setSubviewsConstraints() {
@@ -76,7 +84,12 @@ class HabitCustomCell: UICollectionViewCell {
             habitIndicatorImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             habitIndicatorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             habitIndicatorImageView.widthAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
-            habitIndicatorImageView.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
+            habitIndicatorImageView.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
+            
+            habitIndicatorButton.centerYAnchor.constraint(equalTo: habitIndicatorImageView.centerYAnchor),
+            habitIndicatorButton.centerXAnchor.constraint(equalTo: habitIndicatorImageView.centerXAnchor),
+            habitIndicatorButton.widthAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
+            habitIndicatorButton.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
         ])
     }
 }

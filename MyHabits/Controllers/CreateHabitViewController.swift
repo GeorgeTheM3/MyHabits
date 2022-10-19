@@ -50,7 +50,11 @@ class CreateHabitViewController: UIViewController {
     
     @objc private func saveCreateHabitVC() {
         if let habit = delegateOutView?.delegateOut(info: Habit(name: "", date: .now, color: .black)) {
-            HabitsStore.shared.habits.append(habit)
+            if curentHabit == nil {
+                HabitsStore.shared.habits.append(habit)
+            } else {
+                print("need update curent habit")
+            }
         }
         dismiss(animated: true)
     }
