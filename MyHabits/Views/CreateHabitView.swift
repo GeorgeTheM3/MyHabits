@@ -55,7 +55,7 @@ class CreateHabitView: UIView {
     
     private lazy var choosenTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Каждый день в ...."
+        label.text = "Каждый день в "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,6 +67,14 @@ class CreateHabitView: UIView {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.addTarget(self, action: #selector(timeChanged), for: .valueChanged)
         return datePicker
+    }()
+    
+    private lazy var deleteHabitButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -97,6 +105,7 @@ class CreateHabitView: UIView {
         addSubview(timeLabel)
         addSubview(choosenTimeLabel)
         addSubview(datePicker)
+        addSubview(deleteHabitButton)
     }
     
     private func setSubviewsCostreints() {
@@ -125,8 +134,12 @@ class CreateHabitView: UIView {
             
             datePicker.topAnchor.constraint(equalTo: choosenTimeLabel.bottomAnchor, constant: Constants.paddingTop),
             datePicker.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            datePicker.heightAnchor.constraint(equalToConstant: Constants.datePickerHeigh)
+            datePicker.heightAnchor.constraint(equalToConstant: Constants.datePickerHeigh),
             
+            deleteHabitButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Constants.paddingLeftAndRigh),
+            deleteHabitButton.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -Constants.paddingLeftAndRigh),
+            deleteHabitButton.heightAnchor.constraint(equalToConstant: Constants.paddingTop),
+            deleteHabitButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 }
@@ -142,11 +155,17 @@ extension CreateHabitView: OutputProtocol {
 
 extension CreateHabitView: InputProtocol {
     func delegateInController<T>(info: T?) -> T? {
-        guard let flag = info as? Bool else { return nil}
-        if flag {
-            print(flag)
+        guard let info = info as? (Bool, Habit?) else { return nil}
+        if info.0 {
+            deleteHabitButton.isHidden = true
         } else {
-            print(flag)
+            if let habit = info.1 {
+                enterTitleTextField.text = habit.name
+                enterTitleTextField.textColor = habit.color
+                colorPicker.selectedColor = habit.color
+                datePicker.date = habit.date
+                choosenTimeLabel.text = "Каждый день в \(datePicker.date.formatted(date: .omitted, time: .shortened))"
+            }
         }
         return nil
     }

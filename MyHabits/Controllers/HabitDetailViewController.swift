@@ -34,7 +34,7 @@ class HabitDetailViewController: UIViewController {
     }
     
     @objc private func createHabitVC() {
-        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: false))
+        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: false, curentHabit: curentHabit))
         navigationController.navigationBar.tintColor = Constants.navBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)

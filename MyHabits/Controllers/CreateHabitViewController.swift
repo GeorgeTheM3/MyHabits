@@ -14,9 +14,11 @@ class CreateHabitViewController: UIViewController {
     private var delegateInView: InputProtocol?
     
     private var status: Bool
+    private var curentHabit: Habit?
     
-    init(status: Bool) {
+    init(status: Bool, curentHabit: Habit? = nil) {
         self.status = status
+        self.curentHabit = curentHabit
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,7 +34,7 @@ class CreateHabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHabitsViewController()
-        delegateInView?.delegateInController(info: status)
+        delegateInView?.delegateInController(info: (status,curentHabit))
     }
     
     private func setupHabitsViewController() {
