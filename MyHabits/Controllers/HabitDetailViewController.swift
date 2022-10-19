@@ -29,7 +29,7 @@ class HabitDetailViewController: UIViewController {
         let tableView = delegateInController?.delegateInController(info: UITableView())
         tableView?.dataSource = self
         view.backgroundColor = .white
-        navigationItem.title = "Название привычки"
+        navigationItem.title = curentHabit?.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(createHabitVC))
     }
     
@@ -52,14 +52,7 @@ extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
         let dates = HabitsStore.shared.dates[indexPath.row]
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "Сегодня"
-        case 1:
-            cell.textLabel?.text = "Вчера"
-        default:
-            cell.textLabel?.text = dates.formatted(date: .complete, time: .omitted)
-        }
+        cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
         return cell
     }
     

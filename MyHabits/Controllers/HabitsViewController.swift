@@ -96,9 +96,8 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         let controller = HabitDetailViewController()
         delegateOutToDetailVC = controller
         let selectedHabit = HabitsStore.shared.habits[indexPath.item]
-        _ = delegateOutToDetailVC?.delegateOut(info: selectedHabit)
+        delegateOutToDetailVC?.delegateOut(info: selectedHabit)
         navigationController?.pushViewController(controller, animated: true)
-        print(HabitsStore.shared.habits.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
