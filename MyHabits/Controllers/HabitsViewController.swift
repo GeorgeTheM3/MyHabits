@@ -10,7 +10,7 @@ import UIKit
 class HabitsViewController: UIViewController {
     
     private var delegetaInController: InputProtocol?
-    private var delegateOutController: OutputProtocol?
+    private var delegateOutToCell: OutputProtocol?
     private var delegateOutToDetailVC: OutputProtocol?
     
     let insetsSize: CGFloat = 15
@@ -80,13 +80,9 @@ extension HabitsViewController: UICollectionViewDataSource {
             }
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
-                delegateOutController = cell
+                delegateOutToCell = cell
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
-                cell.habitTitleLabel.text = curentHabit.name
-                cell.habitTitleLabel.textColor = curentHabit.color
-                cell.habitTimeLabel.text = curentHabit.dateString
-                cell.habitIndicatorImageView.tintColor = curentHabit.color
-                cell.habitCounterLabel.text = "Счетчик: \(curentHabit.trackDates.count)"
+                delegateOutToCell?.delegateOut(info: curentHabit)
                 return cell
             }
         }

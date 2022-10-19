@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class HabitCustomCell: UICollectionViewCell {
-    private(set) lazy var habitTitleLabel: UILabel = {
+    private lazy var habitTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTitleLabel"
         label.numberOfLines = 2
@@ -17,7 +17,7 @@ class HabitCustomCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private(set) lazy var habitTimeLabel: UILabel = {
+    private lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTimeLabel"
         label.textColor = .systemGray3
@@ -25,14 +25,14 @@ class HabitCustomCell: UICollectionViewCell {
         return label
     }()
     
-    private(set) lazy var habitCounterLabel: UILabel = {
+    private lazy var habitCounterLabel: UILabel = {
         let label = UILabel()
         label.text = "habitCounterLabel"
         label.textColor = .systemGray2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private(set) lazy var habitIndicatorImageView: UIImageView = {
+    private lazy var habitIndicatorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,8 +83,12 @@ class HabitCustomCell: UICollectionViewCell {
 
 extension HabitCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
-        if let bool = info as? Bool {
-            habitIndicatorImageView.image = bool ? UIImage(systemName: "") : UIImage(systemName: "circle")
+        if let habit = info as? Habit {
+            habitTitleLabel.text = habit.name
+            habitTitleLabel.textColor = habit.color
+            habitTimeLabel.text = habit.dateString
+            habitIndicatorImageView.tintColor = habit.color
+            habitCounterLabel.text = "Счетчик: \(habit.trackDates.count)"
         }
         return nil
     }

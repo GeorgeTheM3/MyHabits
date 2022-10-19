@@ -55,7 +55,7 @@ class CreateHabitView: UIView {
     
     private lazy var choosenTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Каждый день в "
+        label.text = "Каждый день в \(datePicker.date.formatted(date: .omitted, time: .shortened)) "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
