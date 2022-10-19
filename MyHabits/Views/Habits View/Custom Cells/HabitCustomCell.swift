@@ -39,7 +39,7 @@ class HabitCustomCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var habitIndicatorButton: UIButton = { // delete
+    private lazy var habitIndicatorButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false

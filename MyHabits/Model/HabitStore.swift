@@ -112,7 +112,7 @@ public final class HabitsStore {
         guard let startDate = userDefaults.object(forKey: "start_date") as? Date else {
             return []
         }
-        return Date.dates(from: startDate, to: .init())
+        return Date.dates(from: startDate, to: .init()).reversed() // добавил reversed
     }
 
     /// Возвращает значение от 0 до 1.

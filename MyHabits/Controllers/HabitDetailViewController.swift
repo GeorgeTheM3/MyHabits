@@ -51,12 +51,20 @@ class HabitDetailViewController: UIViewController {
 extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
-        cell.textLabel?.text = curentHabit?.name
+        let dates = HabitsStore.shared.dates[indexPath.row]
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "Сегодня"
+        case 1:
+            cell.textLabel?.text = "Вчера"
+        default:
+            cell.textLabel?.text = dates.formatted(date: .complete, time: .omitted)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        HabitsStore.shared.dates.count
     }
 }
 
