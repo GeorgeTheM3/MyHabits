@@ -15,24 +15,24 @@ class HabitsView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(HabitCustomCell.self, forCellWithReuseIdentifier: "habitCell")
         collectionView.register(ProgressCustomCell.self, forCellWithReuseIdentifier: "progressCell")
-        collectionView.backgroundColor = Constants.shared.customWhite
+        collectionView.backgroundColor = Constants.customWhite
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews()
+        addSubviewsElements()
         setConstraintsSubviews()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        addSubviews()
+        addSubviewsElements()
         setConstraintsSubviews()
     }
     
-    private func addSubviews() {
+    private func addSubviewsElements() {
         addSubview(habitsCollectionView)
     }
     

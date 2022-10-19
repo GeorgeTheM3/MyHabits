@@ -13,14 +13,14 @@ class HabitCustomCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "habitTitleLabel"
         label.numberOfLines = 2
-        label.font = Constants.shared.headlineFont
+        label.font = Constants.headlineFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     private(set) lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTimeLabel"
+        label.textColor = .systemGray3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,10 +28,10 @@ class HabitCustomCell: UICollectionViewCell {
     private(set) lazy var habitCounterLabel: UILabel = {
         let label = UILabel()
         label.text = "habitCounterLabel"
+        label.textColor = .systemGray2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     private(set) lazy var habitIndicatorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle")
@@ -41,7 +41,10 @@ class HabitCustomCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews()
+        self.layer.cornerRadius = 10
+        self.backgroundColor = .white
+        self.clipsToBounds = true
+        addSubviewsElements()
         setSubviewsConstraints()
     }
     
@@ -49,7 +52,7 @@ class HabitCustomCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubviews() {
+    private func addSubviewsElements() {
         addSubview(habitTitleLabel)
         addSubview(habitTimeLabel)
         addSubview(habitCounterLabel)

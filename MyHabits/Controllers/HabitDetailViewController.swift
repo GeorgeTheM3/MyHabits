@@ -12,6 +12,8 @@ class HabitDetailViewController: UIViewController {
     
     private weak var delegateInController: InputProtocol?
     
+    private var curentHabit: Habit?
+    
     override func loadView() {
         super.loadView()
         self.view = getView()
@@ -23,16 +25,17 @@ class HabitDetailViewController: UIViewController {
     }
     
     private func setupHabitsViewController() {
-        let a = delegateInController?.delegateInController(info: UITableView())
-        a?.dataSource = self
+        navigationItem.largeTitleDisplayMode = .never
+        let tableView = delegateInController?.delegateInController(info: UITableView())
+        tableView?.dataSource = self
         view.backgroundColor = .white
         navigationItem.title = "Название привычки"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(createHabitVC))
     }
     
     @objc private func createHabitVC() {
-        let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
-        navigationController.navigationBar.tintColor = Constants.shared.navBarTintColor
+        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: false))
+        navigationController.navigationBar.tintColor = Constants.navBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }
@@ -48,11 +51,20 @@ class HabitDetailViewController: UIViewController {
 extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = curentHabit?.name
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         4
+    }
+}
+
+extension HabitDetailViewController: OutputProtocol {
+    func delegateOut<T>(info: T?) -> T? {
+        if let habit = info as? Habit {
+            curentHabit = habit
+        }
+        return nil
     }
 }

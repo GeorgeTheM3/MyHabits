@@ -11,6 +11,7 @@ class HabitsViewController: UIViewController {
     
     private var delegetaInController: InputProtocol?
     private var delegateOutController: OutputProtocol?
+    private var delegateOutToDetailVC: OutputProtocol?
     
     let insetsSize: CGFloat = 15
     let numberOfItems: CGFloat = 1
@@ -39,7 +40,7 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupsCollectionView() {
-        navigationController?.navigationBar.tintColor = Constants.shared.navBarTintColor
+        navigationController?.navigationBar.tintColor = Constants.navBarTintColor
         let collectionView = delegetaInController?.delegateInController(info: UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -52,8 +53,8 @@ class HabitsViewController: UIViewController {
     }
     
     @objc private func presentCreateHabitVC() {
-        let navigationController = UINavigationController(rootViewController: CreateHabitViewController())
-        navigationController.navigationBar.tintColor = Constants.shared.navBarTintColor
+        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: true))
+        navigationController.navigationBar.tintColor = Constants.navBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }
@@ -75,29 +76,17 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "progressCell", for: indexPath) as? ProgressCustomCell {
-                cell.backgroundColor = .white
-                cell.clipsToBounds = true
-                cell.layer.cornerRadius = 10
                 return cell
             }
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
                 delegateOutController = cell
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
-                cell.backgroundColor = .white
-                cell.clipsToBounds = true
-                cell.layer.cornerRadius = 10
-                
                 cell.habitTitleLabel.text = curentHabit.name
                 cell.habitTitleLabel.textColor = curentHabit.color
-                
                 cell.habitTimeLabel.text = curentHabit.dateString
-                cell.habitTimeLabel.textColor = .systemGray3
-                
                 cell.habitIndicatorImageView.tintColor = curentHabit.color
-                
                 cell.habitCounterLabel.text = "Счетчик: \(curentHabit.trackDates.count)"
-                cell.habitCounterLabel.textColor = .systemGray2
                 return cell
             }
         }
@@ -109,6 +98,9 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
+        delegateOutToDetailVC = controller
+        let selectedHabit = HabitsStore.shared.habits[indexPath.item]
+        _ = delegateOutToDetailVC?.delegateOut(info: selectedHabit)
         navigationController?.pushViewController(controller, animated: true)
         print(HabitsStore.shared.habits.count)
     }

@@ -25,7 +25,7 @@ class ProgressCustomCell: UICollectionViewCell {
     
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.tintColor = Constants.shared.navBarTintColor
+        progressView.tintColor = Constants.navBarTintColor
         progressView.progress = 0.5
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
@@ -33,7 +33,10 @@ class ProgressCustomCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews()
+        self.layer.cornerRadius = 10
+        self.backgroundColor = .white
+        self.clipsToBounds = true
+        addSubviewsElements()
         setSubviewsConstraints()
     }
     
@@ -41,7 +44,7 @@ class ProgressCustomCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubviews() {
+    private func addSubviewsElements() {
         addSubview(progressTitleLabel)
         addSubview(progressPercentLabel)
         addSubview(progressView)

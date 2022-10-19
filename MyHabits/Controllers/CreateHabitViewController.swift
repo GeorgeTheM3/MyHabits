@@ -12,6 +12,17 @@ class CreateHabitViewController: UIViewController {
     
     private var delegateOutView: OutputProtocol?
     
+    private var status: Bool
+    
+    init(status: Bool) {
+        self.status = status
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         self.view = getView()
@@ -37,6 +48,7 @@ class CreateHabitViewController: UIViewController {
         if let habit = delegateOutView?.delegateOut(info: Habit(name: "", date: .now, color: .black)) {
             HabitsStore.shared.habits.append(habit)
         }
+        dismiss(animated: true)
     }
     
     private func getView() -> UIView {

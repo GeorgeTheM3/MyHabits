@@ -12,12 +12,12 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTabBar()
+        self.viewControllers = configureTabBar()
     }
     
-    func configureTabBar(){
+    func configureTabBar() -> [UIViewController]{
         view.backgroundColor = .systemGray5
-        self.tabBar.tintColor = Constants.shared.navBarTintColor
+        self.tabBar.tintColor = Constants.navBarTintColor
         self.tabBar.backgroundColor = .systemGray5
         
         var controllers: [UIViewController] = []
@@ -32,7 +32,7 @@ class TabBarViewController: UITabBarController {
         let informationNavigationController = UINavigationController(rootViewController: informationViewController)
         controllers.append(informationNavigationController)
         
-        self.setViewControllers(controllers, animated: true)
+        return controllers
     }
     
 }
