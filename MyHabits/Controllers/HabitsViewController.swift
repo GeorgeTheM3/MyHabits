@@ -29,21 +29,25 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         setupsCollectionView()
         setupHabitsViewController()
-//        HabitsStore.shared.habits.removeAll()
     }
     
-    private func buttonAction(habitIndex: Int) {
+    private func buttonAction(habitIndex: Int) { // Button
         wasPressedButtonHabit = habitIndex
         pressedButton?.buttonPressed(selector: #selector(trackTask))
     }
     
-    @objc private func trackTask() {
+    @objc private func trackTask() { // Button
         let habit = HabitsStore.shared.habits[wasPressedButtonHabit]
+        print(habit.name)
         HabitsStore.shared.track(habit)
-        print(habit.isAlreadyTakenToday)
+        reloadView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reloadView()
+    }
+    
+    private func reloadView() {
         let collectionView = delegetaInController?.delegateInController(info: UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
         collectionView?.reloadData()
     }
@@ -97,7 +101,8 @@ extension HabitsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
                 delegateFromCell = cell
                 delegateOutToCell = cell
-                pressedButton = cell
+                pressedButton = cell // Button
+                buttonAction(habitIndex: indexPath.row) // Button
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
                 delegateOutToCell?.delegateOut(info: curentHabit.isAlreadyTakenToday)
                 delegateFromCell?.delegateInController(info: curentHabit)
@@ -110,7 +115,8 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        buttonAction(habitIndex: indexPath.row)
+//        buttonAction(habitIndex: indexPath.row) // Button
+        print(HabitsStore.shared.habits[wasPressedButtonHabit].trackDates)
         guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
         delegateOutToDetailVC = controller

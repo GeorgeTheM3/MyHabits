@@ -45,14 +45,13 @@ class CreateHabitViewController: UIViewController {
     
     @objc private func deleteHabit() {
         alertController()
-        print("habit deleted")
     }
     
     private func alertController() {
-        
         let alertController = UIAlertController(title: "Удалить привычку", message: "Вы действительно хотите удалить привычку \(curentHabit!.name)", preferredStyle: .alert)
         let delete = UIAlertAction(title: "Удалить", style: .destructive) { _ in
             HabitsStore.shared.habits.removeAll(where: {$0.name == self.curentHabit?.name})
+            self.dismiss(animated: true)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
         alertController.addAction(cancel)
@@ -76,7 +75,12 @@ class CreateHabitViewController: UIViewController {
             if curentHabit == nil {
                 HabitsStore.shared.habits.append(habit)
             } else {
-                print("need update curent habit")
+                if let index = HabitsStore.shared.habits.firstIndex(where: {$0.name == curentHabit?.name}) {
+                    if let trackDates = curentHabit?.trackDates {
+                        habit.trackDates = trackDates
+                        HabitsStore.shared.habits[index] = habit
+                    }
+                }
             }
         }
         dismiss(animated: true)

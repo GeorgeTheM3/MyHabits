@@ -38,8 +38,9 @@ class HabitDetailViewController: UIViewController {
         navigationController.navigationBar.tintColor = Constants.navBarTintColor
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
+//        let controller = CreateHabitViewController(status: false, curentHabit: curentHabit)
+//        navigationController?.pushViewController(controller, animated: true)
     }
-    
     
     private func getView() -> UIView {
         let view = HabitDetailView()
@@ -51,7 +52,6 @@ class HabitDetailViewController: UIViewController {
 extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
-        let dates = HabitsStore.shared.dates[indexPath.row]
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
         return cell
     }

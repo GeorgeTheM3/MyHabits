@@ -43,7 +43,7 @@ class ProgressCustomCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func addSubviewsElements() {
         addSubview(progressTitleLabel)
         addSubview(progressPercentLabel)
