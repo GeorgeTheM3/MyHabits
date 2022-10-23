@@ -46,6 +46,15 @@ class HabitCustomCell: UICollectionViewCell {
         return button
     }()
     
+    
+    private func setButton(bool: Bool) {
+        if bool {
+            habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
+        } else {
+            habitIndicatorImageView.image = UIImage(systemName: "circle")
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 10
@@ -94,8 +103,8 @@ class HabitCustomCell: UICollectionViewCell {
     }
 }
 
-extension HabitCustomCell: OutputProtocol {
-    func delegateOut<T>(info: T?) -> T? {
+extension HabitCustomCell: InputProtocol {
+    func delegateInController<T>(info: T?) -> T? {
         if let habit = info as? Habit {
             habitTitleLabel.text = habit.name
             habitTitleLabel.textColor = habit.color
@@ -106,3 +115,20 @@ extension HabitCustomCell: OutputProtocol {
         return nil
     }
 }
+
+extension HabitCustomCell: OutputProtocol {
+    func delegateOut<T>(info: T?) -> T? {
+        if let bool = info as? Bool {
+            setButton(bool: bool)
+        }
+        return nil
+    }
+}
+
+extension HabitCustomCell: PressedButtonProtocol {
+    func buttonPressed(selector: Selector) {
+        habitIndicatorButton.addTarget(Any.self, action: selector, for: .touchUpInside)
+    }
+}
+
+

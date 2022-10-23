@@ -18,7 +18,7 @@ class ProgressCustomCell: UICollectionViewCell {
     
     private lazy var progressPercentLabel: UILabel = {
         let label = UILabel()
-        label.text = "50%"
+        label.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -26,7 +26,7 @@ class ProgressCustomCell: UICollectionViewCell {
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.tintColor = Constants.navBarTintColor
-        progressView.progress = 0.5
+        progressView.progress = HabitsStore.shared.todayProgress
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()

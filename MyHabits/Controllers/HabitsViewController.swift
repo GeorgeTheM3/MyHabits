@@ -10,8 +10,12 @@ import UIKit
 class HabitsViewController: UIViewController {
     
     private var delegetaInController: InputProtocol?
+    private var delegateFromCell: InputProtocol?
     private var delegateOutToCell: OutputProtocol?
     private var delegateOutToDetailVC: OutputProtocol?
+    private var pressedButton: PressedButtonProtocol?
+    
+    private var wasPressedButtonHabit: Int = 0
     
     let insetsSize: CGFloat = 15
     let numberOfItems: CGFloat = 1
@@ -26,6 +30,17 @@ class HabitsViewController: UIViewController {
         setupsCollectionView()
         setupHabitsViewController()
 //        HabitsStore.shared.habits.removeAll()
+    }
+    
+    private func buttonAction(habitIndex: Int) {
+        wasPressedButtonHabit = habitIndex
+        pressedButton?.buttonPressed(selector: #selector(trackTask))
+    }
+    
+    @objc private func trackTask() {
+        let habit = HabitsStore.shared.habits[wasPressedButtonHabit]
+        HabitsStore.shared.track(habit)
+        print(habit.isAlreadyTakenToday)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,9 +95,12 @@ extension HabitsViewController: UICollectionViewDataSource {
             }
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
+                delegateFromCell = cell
                 delegateOutToCell = cell
+                pressedButton = cell
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
-                delegateOutToCell?.delegateOut(info: curentHabit)
+                delegateOutToCell?.delegateOut(info: curentHabit.isAlreadyTakenToday)
+                delegateFromCell?.delegateInController(info: curentHabit)
                 return cell
             }
         }
@@ -92,6 +110,7 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        buttonAction(habitIndex: indexPath.row)
         guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
         delegateOutToDetailVC = controller

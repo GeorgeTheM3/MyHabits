@@ -170,3 +170,10 @@ extension CreateHabitView: InputProtocol {
         return nil
     }
 }
+
+
+extension CreateHabitView: PressedButtonProtocol {
+    func buttonPressed(selector: Selector) {
+        deleteHabitButton.addTarget(Any.self, action: selector, for: .touchUpInside)
+    }
+}

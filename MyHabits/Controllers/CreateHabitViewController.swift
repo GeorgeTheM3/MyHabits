@@ -12,6 +12,7 @@ class CreateHabitViewController: UIViewController {
     
     private var delegateOutView: OutputProtocol?
     private var delegateInView: InputProtocol?
+    private var buttonsActions: PressedButtonProtocol?
     
     private var status: Bool
     private var curentHabit: Habit?
@@ -34,7 +35,29 @@ class CreateHabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHabitsViewController()
-        delegateInView?.delegateInController(info: (status,curentHabit))
+        delegateInView?.delegateInController(info: (status, curentHabit))
+        buttonActionDelete()
+    }
+    
+    private func buttonActionDelete() {
+        buttonsActions?.buttonPressed(selector: #selector(deleteHabit))
+    }
+    
+    @objc private func deleteHabit() {
+        alertController()
+        print("habit deleted")
+    }
+    
+    private func alertController() {
+        
+        let alertController = UIAlertController(title: "Удалить привычку", message: "Вы действительно хотите удалить привычку \(curentHabit!.name)", preferredStyle: .alert)
+        let delete = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            HabitsStore.shared.habits.removeAll(where: {$0.name == self.curentHabit?.name})
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alertController.addAction(cancel)
+        alertController.addAction(delete)
+        self.present(alertController, animated: true)
     }
     
     private func setupHabitsViewController() {
@@ -63,6 +86,7 @@ class CreateHabitViewController: UIViewController {
         let view = CreateHabitView()
         delegateOutView = view
         delegateInView = view
+        buttonsActions = view
         return view
     }
 }

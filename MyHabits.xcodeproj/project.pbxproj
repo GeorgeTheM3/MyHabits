@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E2DC73B2905495F00EC49BE /* PressedButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC73A2905495F00EC49BE /* PressedButtonProtocol.swift */; };
 		5E32048E28F40BF5002A9B01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32048D28F40BF5002A9B01 /* AppDelegate.swift */; };
 		5E32049028F40BF5002A9B01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32048F28F40BF5002A9B01 /* SceneDelegate.swift */; };
 		5E32049728F40BF6002A9B01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E32049628F40BF6002A9B01 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E2DC73A2905495F00EC49BE /* PressedButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressedButtonProtocol.swift; sourceTree = "<group>"; };
 		5E32048A28F40BF5002A9B01 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E32048D28F40BF5002A9B01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E32048F28F40BF5002A9B01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				5EE2E70C28F4A14B00D45439 /* InputProtocol.swift */,
 				5EE2E71928F5A46500D45439 /* OutputProtocol.swift */,
+				5E2DC73A2905495F00EC49BE /* PressedButtonProtocol.swift */,
 			);
 			path = "Delegate Protocols";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				5EE2E72828F6F27500D45439 /* HabitDetailViewController.swift in Sources */,
 				5EE2E71E28F66ABC00D45439 /* CreateHabitViewController.swift in Sources */,
 				5EE2E71728F598F300D45439 /* ProgressCustomCell.swift in Sources */,
+				5E2DC73B2905495F00EC49BE /* PressedButtonProtocol.swift in Sources */,
 				5EE2E70828F4937500D45439 /* HabitsView.swift in Sources */,
 				5EE2E72628F6F25B00D45439 /* HabitDetailView.swift in Sources */,
 				5EE2E71128F4A75000D45439 /* TabBarViewController.swift in Sources */,
