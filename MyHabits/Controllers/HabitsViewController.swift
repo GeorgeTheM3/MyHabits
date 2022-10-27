@@ -116,7 +116,6 @@ extension HabitsViewController: UICollectionViewDataSource {
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        buttonAction(habitIndex: indexPath.row) // Button
-        print(HabitsStore.shared.habits[wasPressedButtonHabit].trackDates)
         guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
         delegateOutToDetailVC = controller

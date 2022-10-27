@@ -67,7 +67,7 @@ class CreateHabitViewController: UIViewController {
     }
     
     @objc private func dismissCreateHabitVC() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func saveCreateHabitVC() {
@@ -83,7 +83,7 @@ class CreateHabitViewController: UIViewController {
                 }
             }
         }
-        dismiss(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     private func getView() -> UIView {

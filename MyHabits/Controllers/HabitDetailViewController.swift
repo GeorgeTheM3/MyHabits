@@ -34,12 +34,9 @@ class HabitDetailViewController: UIViewController {
     }
     
     @objc private func createHabitVC() {
-        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: false, curentHabit: curentHabit))
-        navigationController.navigationBar.tintColor = Constants.navBarTintColor
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
-//        let controller = CreateHabitViewController(status: false, curentHabit: curentHabit)
-//        navigationController?.pushViewController(controller, animated: true)
+        let controller = CreateHabitViewController(status: false, curentHabit: curentHabit)
+        navigationController?.navigationBar.tintColor = Constants.navBarTintColor
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     private func getView() -> UIView {
