@@ -46,6 +46,18 @@ class HabitCustomCell: UICollectionViewCell {
         return button
     }()
     
+    @objc private func pressedButton(sender: UIButton) {
+        let habit = HabitsStore.shared.habits[sender.tag]
+        if habit.isAlreadyTakenToday {
+            habitIndicatorImageView.image = UIImage(systemName: "circle")
+            habit.trackDates.removeLast()
+        } else {
+            habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
+            HabitsStore.shared.track(habit)
+        }
+        print(habit.trackDates)
+    }
+    
     
     private func setButton(bool: Bool) {
         if bool {
@@ -101,6 +113,8 @@ class HabitCustomCell: UICollectionViewCell {
             habitIndicatorButton.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
         ])
     }
+    
+    
 }
 
 extension HabitCustomCell: InputProtocol {
@@ -118,8 +132,11 @@ extension HabitCustomCell: InputProtocol {
 
 extension HabitCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
-        if let bool = info as? Bool {
-            setButton(bool: bool)
+        if let data = info as? (Bool, Int){
+            setButton(bool: data.0)
+            habitIndicatorButton.tag = data.1
+            habitIndicatorImageView.tag = data.1
+            habitIndicatorButton.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
         }
         return nil
     }

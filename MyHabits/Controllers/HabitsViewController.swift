@@ -101,7 +101,7 @@ extension HabitsViewController: UICollectionViewDataSource {
                 delegateFromCell = cell
                 delegateOutToCell = cell
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
-                delegateOutToCell?.delegateOut(info: curentHabit.isAlreadyTakenToday)
+                delegateOutToCell?.delegateOut(info: (curentHabit.isAlreadyTakenToday, indexPath.item))
                 delegateFromCell?.delegateInController(info: curentHabit)
                 return cell
             }
