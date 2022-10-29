@@ -49,7 +49,13 @@ class HabitDetailViewController: UIViewController {
 extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
+        let date = HabitsStore.shared.dates[indexPath.row]
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
+        if let trackedDates = curentHabit?.trackDates {
+            if trackedDates.contains(where: {$0.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+                cell.backgroundColor = curentHabit?.color
+            }
+        }
         return cell
     }
     
