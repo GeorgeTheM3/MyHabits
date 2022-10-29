@@ -51,7 +51,7 @@ class CreateHabitViewController: UIViewController {
         let alertController = UIAlertController(title: "Удалить привычку", message: "Вы действительно хотите удалить привычку \(curentHabit!.name)", preferredStyle: .alert)
         let delete = UIAlertAction(title: "Удалить", style: .destructive) { _ in
             HabitsStore.shared.habits.removeAll(where: {$0.name == self.curentHabit?.name})
-            self.dismiss(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
         alertController.addAction(cancel)

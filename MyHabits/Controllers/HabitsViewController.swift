@@ -72,10 +72,9 @@ class HabitsViewController: UIViewController {
     }
     
     @objc private func presentCreateHabitVC() {
-        let navigationController = UINavigationController(rootViewController: CreateHabitViewController(status: true))
-        navigationController.navigationBar.tintColor = Constants.navBarTintColor
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
+        let controller = CreateHabitViewController(status: true)
+        controller.navigationController?.navigationBar.tintColor = Constants.navBarTintColor
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -101,8 +100,6 @@ extension HabitsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
                 delegateFromCell = cell
                 delegateOutToCell = cell
-                pressedButton = cell // Button
-                buttonAction(habitIndex: indexPath.row) // Button
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
                 delegateOutToCell?.delegateOut(info: curentHabit.isAlreadyTakenToday)
                 delegateFromCell?.delegateInController(info: curentHabit)
@@ -115,7 +112,6 @@ extension HabitsViewController: UICollectionViewDataSource {
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        buttonAction(habitIndex: indexPath.row) // Button
         guard indexPath.section != 0 else { return }
         let controller = HabitDetailViewController()
         delegateOutToDetailVC = controller

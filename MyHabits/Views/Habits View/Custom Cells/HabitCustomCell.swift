@@ -125,10 +125,4 @@ extension HabitCustomCell: OutputProtocol {
     }
 }
 
-extension HabitCustomCell: PressedButtonProtocol {
-    func buttonPressed(selector: Selector) {
-        habitIndicatorButton.addTarget(Any.self, action: selector, for: .touchUpInside)
-    }
-}
-
 
