@@ -17,6 +17,7 @@ class HabitCustomCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     private lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTimeLabel"
@@ -32,6 +33,7 @@ class HabitCustomCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     private lazy var habitIndicatorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle")
@@ -51,11 +53,11 @@ class HabitCustomCell: UICollectionViewCell {
         if habit.isAlreadyTakenToday {
             habitIndicatorImageView.image = UIImage(systemName: "circle")
             habit.trackDates.removeLast()
+            HabitsStore.shared.save()
         } else {
             habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
             HabitsStore.shared.track(habit)
         }
-        print(habit.trackDates)
     }
     
     

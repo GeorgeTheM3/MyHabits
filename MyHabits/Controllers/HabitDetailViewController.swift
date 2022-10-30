@@ -71,4 +71,8 @@ extension HabitDetailViewController: OutputProtocol {
         }
         return nil
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Активность"
+    }
 }
