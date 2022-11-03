@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class HabitCustomCell: UICollectionViewCell {
+    // property for delegate
+    var reloadView: ReloadProtocol?
+    
     private lazy var habitTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTitleLabel"
@@ -49,7 +52,11 @@ class HabitCustomCell: UICollectionViewCell {
     }()
     
     @objc private func pressedButton(sender: UIButton) {
+        // reload view when button pressed
+        reloadView?.reloadSomething(info: Void())
+        // get selected habit
         let habit = HabitsStore.shared.habits[sender.tag]
+        // change indcator image
         if habit.isAlreadyTakenToday {
             habitIndicatorImageView.image = UIImage(systemName: "circle")
             habit.trackDates.removeLast()
@@ -59,7 +66,6 @@ class HabitCustomCell: UICollectionViewCell {
             HabitsStore.shared.track(habit)
         }
     }
-    
     
     private func setButton(bool: Bool) {
         if bool {
@@ -115,8 +121,6 @@ class HabitCustomCell: UICollectionViewCell {
             habitIndicatorButton.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
         ])
     }
-    
-    
 }
 
 extension HabitCustomCell: InputProtocol {
@@ -143,5 +147,3 @@ extension HabitCustomCell: OutputProtocol {
         return nil
     }
 }
-
-

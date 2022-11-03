@@ -19,7 +19,7 @@ class ProgressCustomCell: UICollectionViewCell {
     }()
     
     // Create label for view progrees percent
-    private(set) lazy var progressPercentLabel: UILabel = {
+    private lazy var progressPercentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,7 +28,6 @@ class ProgressCustomCell: UICollectionViewCell {
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.tintColor = Constants.navBarTintColor
-        progressView.progress = HabitsStore.shared.todayProgress
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
@@ -67,7 +66,8 @@ class ProgressCustomCell: UICollectionViewCell {
         ])
     }
 }
-// Extension for reload value in progress cell
+
+// Extension for get data from HabitsVC and reload value in progress cell
 extension ProgressCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
         if let data = info as? Float {

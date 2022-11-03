@@ -9,14 +9,12 @@ import UIKit
 
 class HabitsViewController: UIViewController {
     
-    private var delegetaInController: InputProtocol?
-    private var delegateFromCell: InputProtocol?
-    private var delegateToProgresCell: OutputProtocol?
-    private var delegateOutToCell: OutputProtocol?
-    private var delegateOutToDetailVC: OutputProtocol?
-    private var pressedButton: PressedButtonProtocol?
-    
-    private var wasPressedButtonHabit: Int = 0
+    weak private var delegetaInController: InputProtocol?
+    weak private var delegateFromCell: InputProtocol?
+    weak private var delegateToProgresCell: OutputProtocol?
+    weak private var delegateOutToCell: OutputProtocol?
+    weak private var delegateOutToDetailVC: OutputProtocol?
+    weak private var pressedButton: PressedButtonProtocol?
     
     let insetsSize: CGFloat = 15
     let numberOfItems: CGFloat = 1
@@ -30,18 +28,6 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         setupsCollectionView()
         setupHabitsViewController()
-    }
-    
-    private func buttonAction(habitIndex: Int) { // Button
-        wasPressedButtonHabit = habitIndex
-        pressedButton?.buttonPressed(selector: #selector(trackTask))
-    }
-    
-    @objc private func trackTask() { // Button
-        let habit = HabitsStore.shared.habits[wasPressedButtonHabit]
-        print(habit.name)
-        HabitsStore.shared.track(habit)
-        reloadView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +90,8 @@ extension HabitsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
                 delegateFromCell = cell
                 delegateOutToCell = cell
+                // make that controller delegator for reload view
+                cell.reloadView = self
                 let curentHabit = HabitsStore.shared.habits[indexPath.item]
                 delegateOutToCell?.delegateOut(info: (curentHabit.isAlreadyTakenToday, indexPath.item))
                 delegateFromCell?.delegateInController(info: curentHabit)
@@ -147,5 +135,13 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return insetsSize
+    }
+}
+
+// extension for reload data in controller when button in cell pressed
+extension HabitsViewController: ReloadProtocol {
+    func reloadSomething<T>(info: T?) -> T? {
+        reloadView()
+        return nil
     }
 }
