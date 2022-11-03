@@ -11,6 +11,7 @@ class HabitsViewController: UIViewController {
     
     private var delegetaInController: InputProtocol?
     private var delegateFromCell: InputProtocol?
+    private var delegateToProgresCell: OutputProtocol?
     private var delegateOutToCell: OutputProtocol?
     private var delegateOutToDetailVC: OutputProtocol?
     private var pressedButton: PressedButtonProtocol?
@@ -94,6 +95,9 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "progressCell", for: indexPath) as? ProgressCustomCell {
+                // set delegate to cell and sent todayProgress
+                delegateToProgresCell = cell
+                delegateToProgresCell?.delegateOut(info: HabitsStore.shared.todayProgress)
                 return cell
             }
         } else {

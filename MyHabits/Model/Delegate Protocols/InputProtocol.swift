@@ -8,5 +8,6 @@
 import Foundation
 
 protocol InputProtocol: AnyObject {
+    // Create for move data from any object to any object
     func delegateInController<T>(info: T?) -> T?
 }

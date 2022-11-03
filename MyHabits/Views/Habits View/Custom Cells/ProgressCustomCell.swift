@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class ProgressCustomCell: UICollectionViewCell {
+    
+    // Создаем лэйбл для отображениея
     private lazy var progressTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Всё получится!"
@@ -16,9 +18,9 @@ class ProgressCustomCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var progressPercentLabel: UILabel = {
+    // Create label for view progrees percent
+    private(set) lazy var progressPercentLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -63,5 +65,15 @@ class ProgressCustomCell: UICollectionViewCell {
             progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
+    }
+}
+// Extension for reload value in progress cell
+extension ProgressCustomCell: OutputProtocol {
+    func delegateOut<T>(info: T?) -> T? {
+        if let data = info as? Float {
+            progressPercentLabel.text = "\(Int(data * 100))%"
+            progressView.progress = data
+        }
+        return nil
     }
 }
