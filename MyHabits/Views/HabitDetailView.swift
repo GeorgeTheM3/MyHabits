@@ -13,6 +13,7 @@ class HabitDetailView: UIView {
        let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 0)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
         return tableView
     }()

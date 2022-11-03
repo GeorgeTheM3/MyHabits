@@ -53,7 +53,8 @@ extension HabitDetailViewController: UITableViewDataSource {
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
         if let trackedDates = curentHabit?.trackDates {
             if trackedDates.contains(where: {$0.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
-                cell.backgroundColor = curentHabit?.color
+                cell.imageView?.image = UIImage(systemName: "checkmark.seal.fill")
+                cell.imageView?.tintColor = curentHabit?.color
             }
         }
         return cell
