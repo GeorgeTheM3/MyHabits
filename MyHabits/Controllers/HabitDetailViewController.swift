@@ -25,10 +25,10 @@ class HabitDetailViewController: UIViewController {
     }
     
     private func setupHabitsViewController() {
-        navigationItem.largeTitleDisplayMode = .never
         let tableView = delegateInController?.delegateInController(info: UITableView())
         tableView?.dataSource = self
         view.backgroundColor = .white
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = curentHabit?.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(createHabitVC))
     }

@@ -50,7 +50,7 @@ class CreateHabitViewController: UIViewController {
     private func alertController() {
         let alertController = UIAlertController(title: "Удалить привычку", message: "Вы действительно хотите удалить привычку \(curentHabit!.name)", preferredStyle: .alert)
         let delete = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            HabitsStore.shared.habits.removeAll(where: {$0.name == self.curentHabit?.name})
+            HabitsStore.shared.habits.removeAll(where: {$0.name == self.curentHabit?.name && $0.date == self.curentHabit?.date})
             self.navigationController?.popToRootViewController(animated: true)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
@@ -61,6 +61,7 @@ class CreateHabitViewController: UIViewController {
     
     private func setupHabitsViewController() {
         view.backgroundColor = .white
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = "Создать"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveCreateHabitVC))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismissCreateHabitVC))
