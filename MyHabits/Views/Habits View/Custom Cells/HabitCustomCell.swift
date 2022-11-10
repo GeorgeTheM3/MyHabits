@@ -41,6 +41,9 @@ class HabitCustomCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.shadowOpacity = Constants.setShadowOpacityMedium
+        imageView.layer.shadowRadius = Constants.setShadowRadius
+        imageView.layer.shadowOffset = Constants.setShadowOffsetLow
         return imageView
     }()
     

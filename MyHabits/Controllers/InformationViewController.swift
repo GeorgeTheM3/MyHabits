@@ -37,10 +37,40 @@ class InformationViewController: UIViewController {
         return textView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInfoViewController()
         appendSubviews()
+        print("1")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("2")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        print("3")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        print("4")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("5")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("6")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("7")
     }
     
     private func setupInfoViewController() {

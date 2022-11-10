@@ -63,6 +63,13 @@ class HabitsViewController: UIViewController {
         controller.navigationController?.navigationBar.tintColor = Constants.navBarTintColor
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    private func setShadowsCell(cell: UICollectionViewCell) {
+        cell.layer.masksToBounds = false
+        cell.layer.shadowOffset = Constants.setShadowOffsetMedium
+        cell.layer.shadowRadius = Constants.setShadowRadius
+        cell.layer.shadowOpacity = Constants.setShadowOpacityLow
+    }
 }
 
 extension HabitsViewController: UICollectionViewDataSource {
@@ -81,6 +88,8 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "progressCell", for: indexPath) as? ProgressCustomCell {
+                // set shadow
+                setShadowsCell(cell: cell)
                 // set delegate to cell and sent todayProgress
                 delegateToProgresCell = cell
                 delegateToProgresCell?.delegateOut(info: HabitsStore.shared.todayProgress)
@@ -88,6 +97,9 @@ extension HabitsViewController: UICollectionViewDataSource {
             }
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as? HabitCustomCell {
+                // set shadow
+                setShadowsCell(cell: cell)
+                // delegate
                 delegateFromCell = cell
                 delegateOutToCell = cell
                 // make that controller delegator for reload view
