@@ -55,8 +55,9 @@ class HabitCustomCell: UICollectionViewCell {
     }()
     
     @objc private func pressedButton(sender: UIButton) {
+        print(habitIndicatorImageView.tag)
+        print(sender.tag)
         // reload view when button pressed
-        reloadView?.reloadSomething(info: Void())
         // get selected habit
         let habit = HabitsStore.shared.habits[sender.tag]
         // change indcator image
@@ -67,6 +68,20 @@ class HabitCustomCell: UICollectionViewCell {
         } else {
             habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
             HabitsStore.shared.track(habit)
+        }
+        reloadView?.reloadSomething(info: Void())
+        animateButton(senderTag: sender.tag)
+    }
+    
+    private func animateButton(senderTag: Int) {
+        if habitIndicatorImageView.tag == senderTag {
+            UIView.animate(withDuration: 0.1) {
+                self.habitIndicatorImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            } completion: { _ in
+                UIView.animate(withDuration: 0.1) {
+                    self.habitIndicatorImageView.transform = .identity
+                }
+            }
         }
     }
     
