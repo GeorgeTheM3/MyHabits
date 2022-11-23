@@ -37,59 +37,53 @@ class HabitCustomCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var habitIndicatorImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "circle")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.shadowOpacity = Constants.setShadowOpacityMedium
-        imageView.layer.shadowRadius = Constants.setShadowRadius
-        imageView.layer.shadowOffset = Constants.setShadowOffsetLow
-        return imageView
-    }()
-    
     private lazy var habitIndicatorButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.layer.shadowOffset = Constants.setShadowOffsetMedium
+        button.layer.shadowRadius = Constants.setShadowRadius
+        button.layer.shadowOpacity = Constants.setShadowOpacityLow
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     @objc private func pressedButton(sender: UIButton) {
-        print(habitIndicatorImageView.tag)
-        print(sender.tag)
-        // reload view when button pressed
-        // get selected habit
+        print("tapped button = \(habitIndicatorButton.tag)") //MARK: DELETE
+        print("input sender button = \(sender.tag)\n") // DELETE
         let habit = HabitsStore.shared.habits[sender.tag]
-        // change indcator image
         if habit.isAlreadyTakenToday {
-            habitIndicatorImageView.image = UIImage(systemName: "circle")
             habit.trackDates.removeLast()
             HabitsStore.shared.save()
         } else {
-            habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
             HabitsStore.shared.track(habit)
         }
-        reloadView?.reloadSomething(info: Void())
-        animateButton(senderTag: sender.tag)
+        tapButtonAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: {
+            self.reloadView?.reloadSomething(info: Void())
+        })
+//        reloadView?.reloadSomething(info: Void()) //DELETE
     }
     
-    private func animateButton(senderTag: Int) {
-        if habitIndicatorImageView.tag == senderTag {
+    // animate tap button
+    private func tapButtonAnimation() {
+        UIView.animate(withDuration: 0.1) {
+            self.habitIndicatorButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } completion: { _ in
             UIView.animate(withDuration: 0.1) {
-                self.habitIndicatorImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.1) {
-                    self.habitIndicatorImageView.transform = .identity
-                }
+                self.habitIndicatorButton.transform = .identity
             }
+            self.habitIndicatorButton.layoutIfNeeded()
         }
     }
     
     private func setButton(bool: Bool) {
+        let config = UIImage.SymbolConfiguration(pointSize: 100)
         if bool {
-            habitIndicatorImageView.image = UIImage(systemName: "checkmark.circle.fill")
+            let imageButton = UIImage(systemName: "checkmark.circle.fill", withConfiguration: config)
+            habitIndicatorButton.setImage(imageButton, for: .normal)
         } else {
-            habitIndicatorImageView.image = UIImage(systemName: "circle")
+            let imageButton = UIImage(systemName: "circle", withConfiguration: config)
+            habitIndicatorButton.setImage(imageButton, for: .normal)
         }
     }
     
@@ -110,7 +104,6 @@ class HabitCustomCell: UICollectionViewCell {
         addSubview(habitTitleLabel)
         addSubview(habitTimeLabel)
         addSubview(habitCounterLabel)
-        addSubview(habitIndicatorImageView)
         addSubview(habitIndicatorButton)
     }
     
@@ -118,7 +111,7 @@ class HabitCustomCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             habitTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             habitTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            habitTitleLabel.trailingAnchor.constraint(equalTo: habitIndicatorImageView.leadingAnchor, constant: -20),
+            habitTitleLabel.trailingAnchor.constraint(equalTo: habitIndicatorButton.leadingAnchor, constant: -20),
             
             habitTimeLabel.topAnchor.constraint(equalTo: habitTitleLabel.bottomAnchor, constant: 5),
             habitTimeLabel.leadingAnchor.constraint(equalTo: habitTitleLabel.leadingAnchor),
@@ -128,13 +121,8 @@ class HabitCustomCell: UICollectionViewCell {
             habitCounterLabel.leadingAnchor.constraint(equalTo: habitTitleLabel.leadingAnchor),
             habitCounterLabel.trailingAnchor.constraint(equalTo: habitTitleLabel.trailingAnchor),
             
-            habitIndicatorImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            habitIndicatorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            habitIndicatorImageView.widthAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
-            habitIndicatorImageView.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
-            
-            habitIndicatorButton.centerYAnchor.constraint(equalTo: habitIndicatorImageView.centerYAnchor),
-            habitIndicatorButton.centerXAnchor.constraint(equalTo: habitIndicatorImageView.centerXAnchor),
+            habitIndicatorButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            habitIndicatorButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             habitIndicatorButton.widthAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3)),
             habitIndicatorButton.heightAnchor.constraint(equalToConstant: (self.frame.height)/CGFloat(3))
         ])
@@ -147,7 +135,7 @@ extension HabitCustomCell: InputProtocol {
             habitTitleLabel.text = habit.name
             habitTitleLabel.textColor = habit.color
             habitTimeLabel.text = habit.dateString
-            habitIndicatorImageView.tintColor = habit.color
+            habitIndicatorButton.tintColor = habit.color
             habitCounterLabel.text = "Счетчик: \(habit.trackDates.count)"
         }
         return nil
@@ -158,9 +146,10 @@ extension HabitCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
         if let data = info as? (Bool, Int){
             setButton(bool: data.0)
+            print("before \(habitIndicatorButton.tag)") //MARK: DELETE
             habitIndicatorButton.tag = data.1
-            habitIndicatorImageView.tag = data.1
             habitIndicatorButton.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
+            print("after \(habitIndicatorButton.tag)\n") // DELETE
         }
         return nil
     }

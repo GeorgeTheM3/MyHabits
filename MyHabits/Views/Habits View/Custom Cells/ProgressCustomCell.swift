@@ -74,7 +74,8 @@ class ProgressCustomCell: UICollectionViewCell {
 extension ProgressCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
         if let data = info as? Float {
-            progressPercentLabel.text = "\(Int(data * 100))%"
+            let number = Int(data * 100)
+            progressPercentLabel.text = "\(number)%"
             progressView.progress = data
         }
         return nil
