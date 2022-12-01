@@ -21,11 +21,18 @@ class InformationViewController: UIViewController {
         super.viewDidLoad()
         setupInfoViewController()
         appendSubviews()
-        print("1")
+        loadText(fileName: "habitInfo")
     }
     
     private func loadText(fileName: String) {
-//        guard let path = Boundle.main.url(forResource: "habitInfo", withExtension: )
+        if let rtfPath = Bundle.main.url(forResource: fileName, withExtension: "rtf") {
+               do {
+                   let attributedStringWithRtf: NSAttributedString = try NSAttributedString(url: rtfPath, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil)
+                   self.infoTextView.attributedText = attributedStringWithRtf
+               } catch let error {
+                   print("Got an error \(error)")
+               }
+           }
     }
     
     private func setupInfoViewController() {
