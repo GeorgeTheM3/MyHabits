@@ -33,7 +33,8 @@ class HabitDetailView: UIView {
     private func setSubviewsConstraints() {
         NSLayoutConstraint.activate([
             activityTableView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
-            activityTableView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor)
+            activityTableView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+            activityTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

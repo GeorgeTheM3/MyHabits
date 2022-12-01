@@ -16,7 +16,7 @@ class HabitsViewController: UIViewController {
     weak private var delegateOutToDetailVC: OutputProtocol?
     weak private var pressedButton: PressedButtonProtocol?
     
-    let insetsSize: CGFloat = 15
+    let insetsSize: CGFloat = 10
     let numberOfItems: CGFloat = 1
     
     override func loadView() {
@@ -125,14 +125,15 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewHeight = collectionView.frame.height
         let collectionViewWidth = collectionView.frame.width
         let spaces = CGFloat((numberOfItems + 1) * insetsSize)
         let cellWidth = (collectionViewWidth - spaces)/numberOfItems
         if indexPath.section == 0 {
-            let cellHeith = cellWidth / 6
+            let cellHeith = collectionViewHeight / 12
             return CGSize(width: cellWidth, height: cellHeith)
         } else {
-            let cellHeith = cellWidth / 2.5
+            let cellHeith = (collectionViewHeight - (insetsSize * 6) - (collectionViewHeight / 12) ) / 4
             return CGSize(width: cellWidth, height: cellHeith)
         }
     }

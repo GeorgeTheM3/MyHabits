@@ -37,6 +37,18 @@ class CreateHabitViewController: UIViewController {
         setupHabitsViewController()
         delegateInView?.delegateInController(info: (status, curentHabit))
         buttonActionDelete()
+        gestureCloseKeyboard()
+    }
+    
+    private func gestureCloseKeyboard() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboardSwipe))
+        gestureRecognizer.numberOfTouchesRequired = 1
+        gestureRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(gestureRecognizer)
+        view.isUserInteractionEnabled = true
+    }
+    @objc private func closeKeyboardSwipe(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     private func buttonActionDelete() {

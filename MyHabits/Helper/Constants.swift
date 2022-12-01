@@ -20,8 +20,8 @@ class Constants {
     static let title3Font = UIFont.preferredFont(forTextStyle: .title3).withSize(20)
     static let headlineFont = UIFont.preferredFont(forTextStyle: .headline).withSize(17)
     static let bodyFont = UIFont.preferredFont(forTextStyle: .body).withSize(17)
-    static let footnoteFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(13)
-    static let footnoteStatusFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(13)
+    static let footnoteFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(14)
+    static let footnoteStatusFont = UIFont.preferredFont(forTextStyle: .footnote).withSize(15)
     
     //Colors
     static let navBarTintColor:UIColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1)

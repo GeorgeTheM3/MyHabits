@@ -14,6 +14,8 @@ class ProgressCustomCell: UICollectionViewCell {
     private lazy var progressTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Всё получится!"
+        label.font = Constants.footnoteFont
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,7 +30,7 @@ class ProgressCustomCell: UICollectionViewCell {
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.tintColor = Constants.navBarTintColor
-        progressView.layer.cornerRadius = 1
+        progressView.layer.cornerRadius = 3.5
         progressView.clipsToBounds = true
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
@@ -65,7 +67,7 @@ class ProgressCustomCell: UICollectionViewCell {
             progressView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            progressView.heightAnchor.constraint(equalToConstant: 5)
+            progressView.heightAnchor.constraint(equalToConstant: 7)
         ])
     }
 }

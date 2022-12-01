@@ -24,6 +24,7 @@ class HabitCustomCell: UICollectionViewCell {
     private lazy var habitTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "habitTimeLabel"
+        label.font = Constants.footnoteFont
         label.textColor = .systemGray3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,6 +33,7 @@ class HabitCustomCell: UICollectionViewCell {
     private lazy var habitCounterLabel: UILabel = {
         let label = UILabel()
         label.text = "habitCounterLabel"
+        label.font = Constants.footnoteStatusFont
         label.textColor = .systemGray2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,8 +50,6 @@ class HabitCustomCell: UICollectionViewCell {
     }()
     
     @objc private func pressedButton(sender: UIButton) {
-        print("tapped button = \(habitIndicatorButton.tag)") //MARK: DELETE
-        print("input sender button = \(sender.tag)\n") // DELETE
         let habit = HabitsStore.shared.habits[sender.tag]
         if habit.isAlreadyTakenToday {
             habit.trackDates.removeLast()
@@ -77,7 +77,7 @@ class HabitCustomCell: UICollectionViewCell {
     }
     
     private func setButton(bool: Bool) {
-        let config = UIImage.SymbolConfiguration(pointSize: 100)
+        let config = UIImage.SymbolConfiguration(pointSize: 50)
         if bool {
             let imageButton = UIImage(systemName: "checkmark.circle.fill", withConfiguration: config)
             habitIndicatorButton.setImage(imageButton, for: .normal)
@@ -146,10 +146,8 @@ extension HabitCustomCell: OutputProtocol {
     func delegateOut<T>(info: T?) -> T? {
         if let data = info as? (Bool, Int){
             setButton(bool: data.0)
-            print("before \(habitIndicatorButton.tag)") //MARK: DELETE
             habitIndicatorButton.tag = data.1
             habitIndicatorButton.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
-            print("after \(habitIndicatorButton.tag)\n") // DELETE
         }
         return nil
     }

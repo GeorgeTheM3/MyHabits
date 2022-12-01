@@ -27,6 +27,7 @@ class HabitDetailViewController: UIViewController {
     private func setupHabitsViewController() {
         let tableView = delegateInController?.delegateInController(info: UITableView())
         tableView?.dataSource = self
+        tableView?.delegate = self
         view.backgroundColor = .white
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = curentHabit?.name
@@ -78,6 +79,12 @@ extension HabitDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         "Активность"
+    }
+}
+
+extension HabitDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
