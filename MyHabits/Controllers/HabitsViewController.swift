@@ -26,6 +26,7 @@ class HabitsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray6
         setupsCollectionView()
         setupHabitsViewController()
     }
@@ -130,10 +131,10 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         let spaces = CGFloat((numberOfItems + 1) * insetsSize)
         let cellWidth = (collectionViewWidth - spaces)/numberOfItems
         if indexPath.section == 0 {
-            let cellHeith = collectionViewHeight / 12
+            let cellHeith = view.frame.height / 15
             return CGSize(width: cellWidth, height: cellHeith)
         } else {
-            let cellHeith = (collectionViewHeight - (insetsSize * 6) - (collectionViewHeight / 12) ) / 4
+            let cellHeith = view.frame.height / 7
             return CGSize(width: cellWidth, height: cellHeith)
         }
     }
